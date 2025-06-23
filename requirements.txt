@@ -1,0 +1,25 @@
+openai
+langchain
+langchain_openai
+langchain_community
+langchain_google_genai
+langchain_pinecone
+pinecone-client
+python-dotenv
+tiktoken
+wikipedia
+pypdf
+docx2txt
+chromadb
+langchain-pymupdf4llm
+Pillow
+pytesseract
+pinecone
+streamlit
+streamlit-chat
+# solution for possible error https://stackoverflow.com/questions/73969269/error-could-not-build-wheels-for-hnswlib-which-is-required-to-install-pyprojec
+# for ragas
+langchain-core
+# langchain-text-splitters
+ragas
+datasets
