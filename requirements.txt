@@ -4,7 +4,6 @@ langchain_openai
 langchain_community
 langchain_google_genai
 langchain_pinecone
-pinecone-client
 python-dotenv
 tiktoken
 wikipedia
