@@ -4,13 +4,18 @@ from streamlit_chat import message
 # from langchain_openai import OpenAIEmbeddings
 from langchain.embeddings import AzureOpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-
+import base64
 from langchain.schema import(
     SystemMessage,
     HumanMessage,
     AIMessage
 )
 
+def get_image_url(image_path):
+    ext = os.path.splitext(image_path)[1][1:]
+    with open(image_path, "rb") as f:
+        data = base64.b64encode(f.read()).decode()
+    return f"data:image/{ext};base64,{data}"
 
 
 
@@ -245,7 +250,7 @@ if __name__ == "__main__":
     # load_dotenv(find_dotenv(), override=True)
 
     st.image('img.png')
-    st.subheader('Ψηφιακός Βοηθός για τους Χρήστες του ΑΘΗΝΑ 🤖')
+    st.subheader('Ψηφιακός Βοηθός για τους Χρήστες του ΑΘΗΝΑ')
 
     if 'messages' not in st.session_state:
         st.session_state.messages = []
@@ -425,11 +430,14 @@ if __name__ == "__main__":
             # text area widget for the chat history
 
     # displaying the messages (chat history)
+    user_image = get_image_url("user_image.png")
+    bot_image = get_image_url("bot_image.png")
+
     for i, msg in enumerate(st.session_state.messages[1:]):
         if i % 2 == 0:
-            message(msg.content, is_user=True, key=f'{i} + 🙂') # user's question
+            message(msg.content, is_user=True, key=f'{i} + 🙂', logo=user_image) # user's question
         else:
-            message(msg.content, is_user=False, key=f'{i} +  🤖') # ChatGPT response
+            message(msg.content, is_user=False, key=f'{i} +  🤖', logo=bot_image) # ChatGPT response
 
 # run the app: streamlit run ./chat_with_documents_pinecone.py
 
